@@ -1,10 +1,11 @@
 import React , {useState}from 'react'
-import './Dashboard.css'
+import './Deanlist.css'
 import Sidebar from './SideBar Section/Sidebar'
 import Content from './Content/Content'
 import { Link, useNavigate} from 'react-router-dom'
+import Profile from './Profile/Profile'
 
-const Dashboard =() => {
+const Deanlist =() => {
   return (
     <div className='dashboard'>
       <Sidebar/>
@@ -16,4 +17,4 @@ const Dashboard =() => {
   )
 }
 
-export default Dashboard
+export default Deanlist

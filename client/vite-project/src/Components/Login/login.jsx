@@ -14,7 +14,7 @@ import { RiLoginBoxLine } from "react-icons/ri";
 const Login=() => {
 
   const checkLoggedIn = () => {
-    const token = localStorage.getItem('s'); // Change 'token' to your desired key
+    const token = localStorage.getItem('sf'); // Change 'token' to your desired key
     if (token) {
       navigateTo('/dashboard');
     }
@@ -65,7 +65,7 @@ const Login=() => {
       }
       else {
         const fullName = response.data;
-        localStorage.setItem('s', fullName); // Store only the full name
+        localStorage.setItem('sf', fullName); // Store only the full name
         console.log(localStorage);
         navigateTo('/dashboard');
     }    

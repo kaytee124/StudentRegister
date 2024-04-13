@@ -11,7 +11,6 @@ const Dashboard =() => {
       <Sidebar/>
       <div className='dashboard--content'>
         <Content/>
-        <Profile/>
       </div>
 
     </div>

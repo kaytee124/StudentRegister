@@ -39,7 +39,7 @@ app.post('/register', async (req, res) => {
 app.post('/login', async (req, res) => {
     const { loginEmail, loginPassword } = req.body;
 
-    const SQL = 'SELECT Email, pswd FROM students WHERE Email = ?';
+    const SQL = 'SELECT full_name, Email, pswd FROM students WHERE Email = ?';
     const values = [loginEmail];
 
     db.query(SQL, values, async (err, results) => {
@@ -52,7 +52,7 @@ app.post('/login', async (req, res) => {
             const passwordMatch = await bcrypt.compare(loginPassword, user.pswd);
             if (passwordMatch) {
                 console.log("Login successful");
-                res.send(results);
+                res.send(user.full_name);
             } else {
                 console.log("Incorrect password");
                 res.send({ message: 'Incorrect password' });
@@ -63,6 +63,7 @@ app.post('/login', async (req, res) => {
         }
     });
 });
+
 
 app.post('/list', async (req, res) => {
     const SQL = 'SELECT full_name, GPA FROM students WHERE GPA < 1.5';

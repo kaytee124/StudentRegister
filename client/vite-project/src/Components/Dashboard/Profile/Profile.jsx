@@ -1,12 +1,15 @@
-import React , {useState}from 'react'
-import { Link, useNavigate} from 'react-router-dom'
+import React from 'react';
 
-const Profile =() => {
+const Profile = () => {
+  const userName = () => {
+    return localStorage.getItem('s');
+  };
+
   return (
-    <div>
-      Profile
+    <div className='header'>
+      <p>Welcome {userName()}</p>
     </div>
-  )
-}
+  );
+};
 
-export default Profile
+export default Profile;

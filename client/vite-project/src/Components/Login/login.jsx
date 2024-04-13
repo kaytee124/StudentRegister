@@ -12,6 +12,18 @@ import { RiLockPasswordFill } from "react-icons/ri";
 import { RiLoginBoxLine } from "react-icons/ri";
 
 const Login=() => {
+
+  const checkLoggedIn = () => {
+    const token = localStorage.getItem('s'); // Change 'token' to your desired key
+    if (token) {
+      navigateTo('/dashboard');
+    }
+  };
+
+  useEffect(() => {
+    checkLoggedIn();
+  }, []);
+
   const [loginEmail, setloginEmail] = useState('')
   const [loginPassword, setloginPassword] = useState('')
   const [errors, setErrors] = useState ({})
@@ -46,14 +58,17 @@ const Login=() => {
       if(response.data.message)
       {
         navigateTo('/')
-        setLoginStatus(response.data.message)
+        setLoginStatus(response)
         setTimeout(() => {
           window.location.reload();
         }, 4000); 
       }
-      else{
-        navigateTo('/dashboard')
-      }
+      else {
+        const fullName = response.data;
+        localStorage.setItem('s', fullName); // Store only the full name
+        console.log(localStorage);
+        navigateTo('/dashboard');
+    }    
     });
 
 

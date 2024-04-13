@@ -16,7 +16,7 @@ const Sidebar =() => {
         </div>
 
         <div className='menu--list'>
-            <a href = "#" className='item'>
+            <a href = "#" className='item active'>
             <BiHome className='icon' />
             Dashboard
             </a>

@@ -66,7 +66,7 @@ app.post('/login', async (req, res) => {
 
 
 app.post('/list', async (req, res) => {
-    const SQL = 'SELECT full_name, GPA FROM students WHERE GPA < 1.5';
+    const SQL = 'SELECT full_name, YearGroup, GPA FROM students WHERE GPA < 1.5  LIMIT 5';
     
     db.query(SQL, (err, results) => {
         if (err) {
@@ -78,3 +78,15 @@ app.post('/list', async (req, res) => {
     });
 });
 
+app.post('/deanlist', async (req, res) => {
+    const SQL = 'SELECT full_name, YearGroup, GPA FROM students WHERE GPA> 3.5';
+    
+    db.query(SQL, (err, results) => {
+        if (err) {
+            console.error("Database error:", err);
+            res.send({ error: err });
+        } else {
+            res.send(results);
+        }
+    });
+});

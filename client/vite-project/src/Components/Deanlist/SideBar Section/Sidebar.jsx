@@ -1,10 +1,8 @@
-import React , {useState}from 'react'
+import React from 'react'
 import './sidebar.css'
 import { FaUniversity, FaMedal } from "react-icons/fa";
 import { BiHome, BiMessage, BiHelpCircle} from "react-icons/bi";
 import { VscCircleSlash } from "react-icons/vsc";
-import { TbAlertSquareFilled } from "react-icons/tb";
-import { Link, useNavigate} from 'react-router-dom'
 
 const Sidebar =() => {
 
@@ -16,13 +14,13 @@ const Sidebar =() => {
         </div>
 
         <div className='menu--list'>
-            <a href = "#" className='item active'>
+            <a href = "/dashboard" className='item active'>
             <BiHome className='icon' />
             Dashboard
             </a>
         </div>
         <div className='menu--list'>
-            <a href = "#" className='item'>
+            <a href = "/deanlist" className='item'>
             <FaMedal className='icon'/>
             Deans List
             </a>
@@ -35,14 +33,8 @@ const Sidebar =() => {
         </div>
         <div className='menu--list'>
             <a href = "#" className='item'>
-            <TbAlertSquareFilled  className='icon'/>
-            Pending Alerts
-            </a>
-        </div>
-        <div className='menu--list'>
-            <a href = "#" className='item'>
             <BiMessage  className='icon'/>
-            Pending Messages
+            Messages
             </a>
         </div>
         <div className='menu--list'>

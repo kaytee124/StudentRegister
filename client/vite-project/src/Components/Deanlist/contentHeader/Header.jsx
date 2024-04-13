@@ -1,23 +1,12 @@
-import React , {useState}from 'react'
-import { Link, useNavigate} from 'react-router-dom'
+import React from 'react'
 import { BiSearchAlt } from "react-icons/bi";
 import { IoNotifications } from "react-icons/io5";
 
 const Header =() => {
 
-
-
-  const userName = () => {
-    return localStorage.getItem('s');
-    };
-
   return (
-    <><div className='welcome'>
-      <p>Welcome {userName()}</p>
-
-    </div>
     <div className='header'>
-        <h1 className='title'>Dashboard</h1>
+        <h1 className='title'>Dean's List</h1>
         <div className='activity'>
           <div className='searchBox'>
             <input type="text" placeholder="Search" />
@@ -31,7 +20,6 @@ const Header =() => {
         </div>
 
       </div>
-      </>
   )
 }
 

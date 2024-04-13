@@ -28,27 +28,24 @@ const Register=() => {
 
 
   const Userregister = (event) => {
-    event.preventDefault(); // Prevent default form submission behavior
+    event.preventDefault(); 
 
-    // Validation checks
+
     const errors = {};
 
-    // Student ID validation
     if (!/^\d{8}$/.test(studentID)) {
       errors.studentID = "Student ID must be 8 digits long and contain only numbers";
     }
 
-    // Firstname validation
+
     if (!/^[A-Za-z]{3,}$/.test(Firstname)) {
       errors.Firstname = "Firstname must contain only alphabets and have a length of 3 or more";
     }
 
-    // Lastname validation
     if (!/^[A-Za-z]{3,}$/.test(Lastname)) {
       errors.Lastname = "Lastname must contain only alphabets and have a length of 3 or more";
     }
 
-    // Date of Birth validation
     const currentDate = new Date();
     const selectedDate = new Date(DateOfBirth);
     const minDate = new Date(currentDate.getFullYear() - 10, currentDate.getMonth(), currentDate.getDate());
@@ -61,38 +58,34 @@ const Register=() => {
       errors.Email = "Email must be from Ashesi University (ashesi.edu.gh)";
     }
 
-    // Phone number validation
+
     if (!/^\d{10}$/.test(PhoneNumber) || PhoneNumber[0] !== '0') {
       errors.PhoneNumber = "Phone Number must be 10 digits long and start with 0";
     }
 
-    // Origin validation
+ 
     if (!/^[A-Za-z ]+$/.test(Origin)) {
       errors.Origin = "Country of Origin must contain only letters";
     }
 
-    // Year Group validation
     if (!/^\d{4}$/.test(YearGroup)) {
       errors.YearGroup = "Year Group must be 4 digits long and contain only numbers";
     }
 
-    // Password validation
     if (!/^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).{8,}$/.test(Password)) {
       errors.Password = "Password must contain at least one number, one letter, one symbol, and be at least 8 characters long";
     }
 
-    // Verify Password validation
     if (Password !== VerifyPassword) {
       errors.VerifyPassword = "Passwords do not match";
     }
 
-    // If there are errors, update state with error messages
     if (Object.keys(errors).length > 0) {
       setErrors(errors);
       return;
     }
 
-    // If no errors, proceed with form submission
+
     Axios.post('http://localhost:3002/register', {
       studentID: studentID,
       Firstname: Firstname,
@@ -125,7 +118,7 @@ const Register=() => {
 
 
 
-  // Inside the return statement, render error messages conditionally
+
   return (
     <div className='RegisterPage flex'>
       <div className="container flex">
@@ -166,7 +159,7 @@ const Register=() => {
                 <div className="input flex">
                   <input type="text" id='FirstName' placeholder='Enter First Name' onChange={(event) => {
                     setFirstname(event.target.value);
-                    setErrors({ ...errors, Firstname: '' }); // Clear error when input changes
+                    setErrors({ ...errors, Firstname: '' });
                   }} required />
                   {errors.Firstname && <span className="error">{errors.Firstname}</span>}
                 </div>
@@ -177,7 +170,7 @@ const Register=() => {
                 <div className="input flex">
                   <input type="text" id='LastName' placeholder='Enter Last Name' onChange={(event) => {
                     setLastname(event.target.value);
-                    setErrors({ ...errors, Lastname: '' }); // Clear error when input changes
+                    setErrors({ ...errors, Lastname: '' });
                   }} required />
                   {errors.Lastname && <span className="error">{errors.Lastname}</span>}
                 </div>
@@ -199,7 +192,7 @@ const Register=() => {
                 <div className="input flex">
                   <input type="date" id='DateOfBirth' required onChange={(event) => {
                     setDateOfBirth(event.target.value);
-                    setErrors({ ...errors, DateOfBirth: '' }); // Clear error when input changes
+                    setErrors({ ...errors, DateOfBirth: '' });
                   }} />
                   {errors.DateOfBirth && <span className="error">{errors.DateOfBirth}</span>}
                 </div>
@@ -210,7 +203,7 @@ const Register=() => {
                 <div className="input flex">
                   <input type="email" id='Email' placeholder='Enter email' onChange={(event) => {
                     setEmail(event.target.value);
-                    setErrors({ ...errors, Email: '' }); // Clear error when input changes
+                    setErrors({ ...errors, Email: '' });
                   }} required />
                   {errors.Email && <span className="error">{errors.Email}</span>}
                 </div>
@@ -221,7 +214,7 @@ const Register=() => {
                 <div className="input flex">
                   <input type="tel" id='PhoneNumber' placeholder='Enter phone number' onChange={(event) => {
                     setPhoneNumber(event.target.value);
-                    setErrors({ ...errors, PhoneNumber: '' }); // Clear error when input changes
+                    setErrors({ ...errors, PhoneNumber: '' });
                   }} required />
                   {errors.PhoneNumber && <span className="error">{errors.PhoneNumber}</span>}
                 </div>
@@ -232,7 +225,7 @@ const Register=() => {
                 <div className="input flex">
                   <input type="text" id='CountryOfOrigin' placeholder='Enter country of origin' onChange={(event) => {
                     setOrigin(event.target.value);
-                    setErrors({ ...errors, Origin: '' }); // Clear error when input changes
+                    setErrors({ ...errors, Origin: '' });
                   }} required />
                   {errors.Origin && <span className="error">{errors.Origin}</span>}
                 </div>
@@ -243,7 +236,7 @@ const Register=() => {
                 <div className="input flex">
                   <input type="text" id='YearGroup' placeholder='Enter year group' onChange={(event) => {
                     setYearGroup(event.target.value);
-                    setErrors({ ...errors, YearGroup: '' }); // Clear error when input changes
+                    setErrors({ ...errors, YearGroup: '' });
                   }} required />
                   {errors.YearGroup && <span className="error">{errors.YearGroup}</span>}
                 </div>
@@ -264,7 +257,7 @@ const Register=() => {
                 <div className="input flex">
                   <input type="password" id='userpass' placeholder='Enter password' onChange={(event) => {
                     setPassword(event.target.value);
-                    setErrors({ ...errors, Password: '' }); // Clear error when input changes
+                    setErrors({ ...errors, Password: '' });
                   }} required />
                   {errors.Password && <span className="error">{errors.Password}</span>}
                 </div>
@@ -275,7 +268,7 @@ const Register=() => {
                 <div className="input flex">
                   <input type="password" id='verifypass' placeholder='Verify password' onChange={(event) => {
                     setVerifyPassword(event.target.value);
-                    setErrors({ ...errors, VerifyPassword: '' }); // Clear error when input changes
+                    setErrors({ ...errors, VerifyPassword: '' });
                   }} required />
                   {errors.VerifyPassword && <span className="error">{errors.VerifyPassword}</span>}
                 </div>

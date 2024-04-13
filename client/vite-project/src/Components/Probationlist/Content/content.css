@@ -17,21 +17,21 @@
   align-items: center;
 }
 
-.searchBox {
+.message-searchBox {
   background: #dde6ed;
   padding: 8px 10px;
   border-radius: 10px;
   display: flex;
   align-items: center;
 }
-.searchBox .icon {
+.message-searchBox .icon {
   color: black;
   font-size: 22px;
   cursor: pointer;
   transition: 0.5s ease;
 }
 
-.searchBox input {
+.message-searchBox input {
   border: none;
   outline: none;
   background: transparent;
@@ -101,11 +101,6 @@
   font-size: 14px;
   color: black;
   border-radius: 10px;
-}
-
-.card-link {
-  text-decoration: none;
-  color: black;
 }
 
 /*# sourceMappingURL=content.css.map */

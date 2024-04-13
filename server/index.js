@@ -90,3 +90,46 @@ app.post('/deanlist', async (req, res) => {
         }
     });
 });
+
+app.post('/probationlist', async (req, res) => {
+    const SQL = 'SELECT full_name, YearGroup, GPA FROM students WHERE GPA < 1.5';
+    
+    db.query(SQL, (err, results) => {
+        if (err) {
+            console.error("Database error:", err);
+            res.send({ error: err });
+        } else {
+            res.send(results);
+        }
+    });
+});
+
+
+app.post('/probationlist', async (req, res) => {
+    const SQL = 'SELECT full_name, YearGroup, GPA FROM students WHERE GPA < 1.5';
+    
+    db.query(SQL, (err, results) => {
+        if (err) {
+            console.error("Database error:", err);
+            res.send({ error: err });
+        } else {
+            res.send(results);
+        }
+    });
+});
+
+app.post('/messages', async (req, res) => {
+    const SQL = `
+        SELECT m.message, s.full_name, s.YearGroup
+        FROM messages m
+        INNER JOIN students s ON m.studentID = s.studentID`;
+    
+    db.query(SQL, (err, results) => {
+        if (err) {
+            console.error("Database error:", err);
+            res.send({ error: err });
+        } else {
+            res.send(results);
+        }
+    });
+});

@@ -3,12 +3,13 @@ import Dashboard from './Components/Dashboard/Dashboard'
 import Login from './Components/Login/login'
 import Register from './Components/Register/Register'
 import Deanlist from './Components/Deanlist/Deanlist'
+import Messages from './Components/Messages/Messages'
 
 import {
   createBrowserRouter,
   RouterProvider
 }from 'react-router-dom'
-import Probationlist from './Components/Probation/Probationlist'
+import Probationlist from './Components/Probationlist/Probationlist'
 
 const router = createBrowserRouter ([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter ([
   {
     path: '/probationlist',
     element: <div><Probationlist/></div>
+  },
+  {
+    path: '/messages',
+    element: <div><Messages/></div>
   },
 
 

@@ -8,10 +8,12 @@ const cardvals= [
     {
         title:"Dean's list",
         icon:<FaMedal/>,
+        link : '/deanlist'
     },
     {
         title:"Probation List",
         icon:<FaClipboardList />,
+        link : '/probationlist'
     },
 
 ];
@@ -24,7 +26,9 @@ const Card =() => {
                     {item.icon}
                 </div>
                 <div className='card-title'>
+                    <Link to={item.link} className='card-link'>
                     <h2>{item.title}</h2>
+                    </Link>
                 </div>
             </div>
         ))}

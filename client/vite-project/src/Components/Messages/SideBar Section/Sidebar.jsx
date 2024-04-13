@@ -26,13 +26,13 @@ const Sidebar =() => {
             </a>
         </div>
         <div className='menu--list'>
-            <a href = "#" className='item'>
+            <a href = "/probationlist" className='item'>
             <VscCircleSlash  className='icon'/>
             Probation List
             </a>
         </div>
         <div className='menu--list'>
-            <a href = "#" className='item'>
+            <a href = "/messages" className='item'>
             <BiMessage  className='icon'/>
             Messages
             </a>

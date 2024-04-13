@@ -36,7 +36,7 @@ const List = () => {
                         <tr key={index}>
                             <td>{student.full_name}</td>
                             <td>{student.GPA}</td>
-                            <td>{student.year_group}</td>
+                            <td>{student.YearGroup}</td>
                         </tr>
                     ))}
                 </tbody>

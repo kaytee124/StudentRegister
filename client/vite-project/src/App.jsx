@@ -8,6 +8,7 @@ import {
   createBrowserRouter,
   RouterProvider
 }from 'react-router-dom'
+import Probationlist from './Components/Probation/Probationlist'
 
 const router = createBrowserRouter ([
   {
@@ -26,6 +27,11 @@ const router = createBrowserRouter ([
     path: '/deanlist',
     element: <div><Deanlist/></div>
   },
+  {
+    path: '/probationlist',
+    element: <div><Probationlist/></div>
+  },
+
 
 ])
 

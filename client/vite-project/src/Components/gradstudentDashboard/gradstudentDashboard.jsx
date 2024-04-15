@@ -1,9 +1,9 @@
 import React , {useState}from 'react'
-import './studentDashboard.css'
+import './gradstudentDashboard.css'
 import Sidebar from './SideBar Section/Sidebar'
 import Content from './Content/Content'
 
-const studentDashboard =() => {
+const gradstudentDashboard =() => {
   return (
     <div className='dashboard'>
       <Sidebar/>
@@ -15,4 +15,4 @@ const studentDashboard =() => {
   )
 }
 
-export default studentDashboard
+export default gradstudentDashboard

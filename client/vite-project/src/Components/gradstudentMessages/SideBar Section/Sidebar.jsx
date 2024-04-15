@@ -24,7 +24,7 @@ const Sidebar = () => {
         </div>
 
         <div className='menu--list'>
-            <a href = "/studentDashboard" className='item active'>
+            <a href = "/graddash" className='item active'>
             <BiHome className='icon' />
             Dashboard
             </a>
@@ -36,13 +36,13 @@ const Sidebar = () => {
             </a>
         </div>
         <div className='menu--list'>
-            <a href = "/stuCourses" className='item'>
+            <a href = "/gradcourse" className='item'>
             <SiCoursera className='icon'/>
             Courses
             </a>
         </div>
         <div className='menu--list'>
-            <a href = "stumessages" className='item'>
+            <a href = "gradmessage" className='item'>
             <BiMessage  className='icon'/>
             Messages
             </a>

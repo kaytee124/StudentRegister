@@ -155,20 +155,6 @@ app.post('/probationlist', async (req, res) => {
     });
 });
 
-
-app.post('/probationlist', async (req, res) => {
-    const SQL = 'SELECT full_name, YearGroup, GPA FROM students WHERE GPA < 1.5';
-    
-    db.query(SQL, (err, results) => {
-        if (err) {
-            console.error("Database error:", err);
-            res.send({ error: err });
-        } else {
-            res.send(results);
-        }
-    });
-});
-
 app.post('/messages', async (req, res) => {
     const SQL = `
         SELECT m.message, f.full_name
@@ -189,7 +175,6 @@ app.post('/messages', async (req, res) => {
 app.post('/createmessages', async (req, res) => {
     const { message, token } = req.body;
 
-    // Validate token if needed
 
     const SQL = `
         INSERT INTO messages (message, FID)
@@ -270,4 +255,34 @@ app.post('/courselist', (req, res) => {
     });
 });
 
+app.post('/gradcourselist', (req, res) => {
+    const { token } = req.body;
+
+    const SQL = `
+        SELECT 
+            g.gradCourseName, 
+            d.departmentName, 
+            d.departmentHead
+        FROM 
+            gradcourses g
+        JOIN 
+            department d ON g.departmentID = d.departmentID
+        JOIN 
+            gradcourse_major gcm ON g.gradCourseID = gcm.gradCourseID
+        JOIN 
+            gradstudents gs ON gs.gradmajorID = gcm.gradmajorID
+        WHERE 
+            gs.gradstudentID = ?
+    `;
+
+    db.query(SQL, [token], (err, results) => {
+        if (err) {
+            console.error("Database error:", err);
+            res.send({ error: err });
+        } else {
+            console.log(results);
+            res.send(results);
+        }
+    });
+});
 

@@ -7,8 +7,9 @@ const Header =() => {
 
 
   const userName = () => {
-    return localStorage.getItem('f');
+    return localStorage.getItem('gradname');
     };
+    console.log(userName());
 
   return (
     <><div className='welcome'>

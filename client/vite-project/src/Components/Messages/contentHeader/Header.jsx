@@ -6,7 +6,7 @@ const Header =() => {
 
   return (
     <div className='header'>
-        <h1 className='title'>Student Counseling</h1>
+        <h1 className='title'>Announcements</h1>
         <div className='activity'>
           <div className='searchBox'>
             <input type="text" placeholder="Search" />

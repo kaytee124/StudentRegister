@@ -21,10 +21,6 @@ const List = () => {
     fetchData();
   }, []);
 
-  const handleAlertClick = (fullName) => {
-    alert(`Alert for ${fullName}`);
-  };
-
   const handleViewClick = (faculty) => {
     setSelectedFaculty(faculty);
     setViewMessageModalIsOpen(true);

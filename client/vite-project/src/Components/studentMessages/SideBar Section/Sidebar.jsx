@@ -11,7 +11,7 @@ const Sidebar = () => {
   const navigateTo = useNavigate();
 
   const logout = () => {
-    localStorage.removeItem('fullname');
+    localStorage.removeItem('undergradname');
     localStorage.removeItem('uid');
     navigateTo('/');
   };
@@ -24,7 +24,7 @@ const Sidebar = () => {
         </div>
 
         <div className='menu--list'>
-            <a href = "/studentDashboard" className='item active'>
+            <a href = "/stuDashboard" className='item active'>
             <BiHome className='icon' />
             Dashboard
             </a>

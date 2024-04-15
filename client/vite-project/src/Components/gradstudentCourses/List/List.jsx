@@ -5,14 +5,14 @@ import './List.css';
 const List = () => {
     const [courses, setCourses] = useState([]);
     const userID = () => {
-        return localStorage.getItem('uid');
+        return localStorage.getItem('Gid');
         };
     const token = userID();
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.post('http://localhost:3002/courselist', { token });
+                const response = await axios.post('http://localhost:3002/gradcourselist', { token });
                 setCourses(response.data);
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -38,7 +38,7 @@ const List = () => {
                 <tbody>
                     {courses.map((student, index) => (
                         <tr key={index}>
-                            <td>{student.CourseName}</td>
+                            <td>{student.gradCourseName}</td>
                             <td>{student.departmentName}</td>
                             <td>{student.departmentHead}</td>
                         </tr>

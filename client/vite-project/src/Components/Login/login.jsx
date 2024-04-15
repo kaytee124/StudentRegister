@@ -16,12 +16,16 @@ const Login=() => {
   const checkLoggedIn = () => {
     const token = localStorage.getItem('fid');
     const Undertoken = localStorage.getItem('uid');
+    const gradtoken = localStorage.getItem('Gid');
     if (token) {
       navigateTo('/dashboard');
     }else if (Undertoken) 
     {
       navigateTo('/stuDashboard');
-    }
+    }else if (gradtoken) 
+  {
+    navigateTo('/graddash');
+  }
   
   };
 
@@ -85,6 +89,14 @@ const Login=() => {
           const studentID = response.data.studentID;
           localStorage.setItem('uid', studentID);
           navigateTo('/stuDashboard');
+        }
+        else if(userType === 'grad')
+        {
+          const fullName = response.data.full_name;
+          localStorage.setItem('gradname', fullName);
+          const gradstudentID = response.data.gradstudentID;
+          localStorage.setItem('Gid', gradstudentID);
+          navigateTo('/graddash');
         }
       }
     });

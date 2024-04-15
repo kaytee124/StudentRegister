@@ -1,7 +1,7 @@
 import React , {useState}from 'react'
 import { FaRegUser } from "react-icons/fa";
 import { SiCoursera } from "react-icons/si";
-import { Link, useNavigate} from 'react-router-dom'
+import { Link} from 'react-router-dom'
 
 
 

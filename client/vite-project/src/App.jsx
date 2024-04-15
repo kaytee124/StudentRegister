@@ -15,6 +15,11 @@ import Probationlist from './Components/Probationlist/Probationlist'
 import StuCourses from './Components/studentCourses/studentCourses'
 import StuMessages from './Components/studentMessages/studentMessages'
 import StuPage   from './Components/studentPage/studentPage'
+import Gradcourses from './Components/gradstudentCourses/gradstudentCourses'
+import Graddashboard from './Components/gradstudentDashboard/gradstudentDashboard'
+import Gradmessage from './Components/gradstudentMessages/gradstudentMessages'
+
+
 
 
 const router = createBrowserRouter ([
@@ -66,7 +71,18 @@ const router = createBrowserRouter ([
     path: '/stupage',
     element: <div><StuPage/></div>
   },
-
+  {
+    path: '/gradcourse',
+    element: <div><Gradcourses/></div>
+  },
+  {
+    path: '/graddash',
+    element: <div><Graddashboard/></div>
+  },
+  {
+    path: '/gradmessage',
+    element: <div><Gradmessage/></div>
+  },
 
 
 ])

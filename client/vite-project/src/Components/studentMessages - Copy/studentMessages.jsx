@@ -1,10 +1,10 @@
 import React , {useState}from 'react'
-import './Messages.css'
+import './studentMessages.css'
 import Sidebar from './SideBar Section/Sidebar'
 import Content from './Content/Content'
 
 
-const Probationlist =() => {
+const studentMessages =() => {
   return (
     <div className='dashboard'>
       <Sidebar/>
@@ -16,4 +16,4 @@ const Probationlist =() => {
   )
 }
 
-export default Probationlist
+export default studentMessages

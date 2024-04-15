@@ -1,4 +1,4 @@
-import React , {useState}from 'react'
+import React from 'react'
 import './Deanlist.css'
 import Sidebar from './SideBar Section/Sidebar'
 import Content from './Content/Content'

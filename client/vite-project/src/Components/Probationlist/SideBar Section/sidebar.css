@@ -36,4 +36,10 @@
   background: white;
   color: black;
   transform: scale(1.1);
-}/*# sourceMappingURL=sidebar.css.map */
+}
+.menu--list button {
+  background: none;
+  border: none;
+}
+
+/*# sourceMappingURL=sidebar.css.map */

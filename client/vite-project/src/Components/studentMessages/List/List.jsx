@@ -6,6 +6,7 @@ import './List.css';
 const List = () => {
   const [Faculty, setFaculty] = useState([]);
   const [selectedFaculty, setSelectedFaculty] = useState(null);
+   const [viewMessageModalIsOpen, setViewMessageModalIsOpen] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,12 +21,8 @@ const List = () => {
     fetchData();
   }, []);
 
-  const handleAlertClick = (fullName) => {
-    alert(`Alert for ${fullName}`);
-  };
-
-  const handleViewClick = (Faculty) => {
-    setSelectedFaculty(Faculty);
+  const handleViewClick = (faculty) => {
+    setSelectedFaculty(faculty);
     setViewMessageModalIsOpen(true);
   };
 
@@ -67,12 +64,12 @@ const List = () => {
             </tr>
           </thead>
           <tbody>
-            {Faculty.map((Faculty, index) => (
+            {Faculty.map((faculty, index) => (
               <tr key={index}>
-                <td>{Faculty.full_name}</td>
-                <td>{Faculty.message}</td>
+                <td>{faculty.full_name}</td>
+                <td>{faculty.message}</td>
                 <td>
-                  <button className="list-btn" onClick={() => handleViewClick(student)}>
+                  <button className="list-btn" onClick={() => handleViewClick(faculty)}>
                     View
                   </button>
                 </td>

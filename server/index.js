@@ -76,13 +76,13 @@ app.post('/login', async (req, res) => {
   
     switch (userType) {
       case 'undergrad':
-        SQL = 'SELECT full_name, Email, pswd FROM students WHERE Email = ?';
+        SQL = 'SELECT full_name, Email, pswd, studentID FROM students WHERE Email = ?';
         break;
       case 'grad':
-        SQL = 'SELECT full_name, Email, pswd FROM gradstudents WHERE Email = ?';
+        SQL = 'SELECT full_name, Email, pswd, gradstudentID FROM gradstudents WHERE Email = ?';
         break;
       case 'faculty':
-        SQL = 'SELECT full_name, Email, pswd FROM faculty WHERE Email = ?';
+        SQL = 'SELECT full_name, Email, pswd, FID FROM faculty WHERE Email = ?';
         break;
       default:
         res.send({ message: 'Invalid user type' });
@@ -101,7 +101,7 @@ app.post('/login', async (req, res) => {
         const passwordMatch = await bcrypt.compare(loginPassword, user.pswd);
         if (passwordMatch) {
           console.log('Login successful');
-          res.send(user.full_name);
+          res.send(user);
         } else {
           console.log('Incorrect password');
           res.send({ message: 'Incorrect password' });
@@ -171,9 +171,9 @@ app.post('/probationlist', async (req, res) => {
 
 app.post('/messages', async (req, res) => {
     const SQL = `
-        SELECT m.message, s.full_name, s.YearGroup
+        SELECT m.message, f.full_name
         FROM messages m
-        INNER JOIN students s ON m.studentID = s.studentID`;
+        INNER JOIN faculty f ON m.FID = f.FID`;
     
     db.query(SQL, (err, results) => {
         if (err) {
@@ -184,3 +184,90 @@ app.post('/messages', async (req, res) => {
         }
     });
 });
+
+
+app.post('/createmessages', async (req, res) => {
+    const { message, token } = req.body;
+
+    // Validate token if needed
+
+    const SQL = `
+        INSERT INTO messages (message, FID)
+        VALUES (?, ?)`;
+    
+    db.query(SQL, [message, token], (err, results) => {
+        if (err) {
+            console.error("Database error:", err);
+            res.status(500).send({ error: "An error occurred while creating the message." });
+        } else {
+            res.status(201).send({ message: "Message created successfully." });
+        }
+    });
+});
+
+
+app.post('/studentprofile', (req, res) => {
+    const { token } = req.body;
+    const SQL = 'SELECT full_name, YearGroup, DateOfBirth, Gender, Email, PhoneNumber, CountryOfOrigin FROM students WHERE studentID = ?';
+    
+    db.query(SQL, [token], (err, results) => {
+        if (err) {
+            console.error("Database error:", err);
+            res.send({ error: err });
+        } else {
+            res.send(results);
+        }
+    });
+});
+
+app.post('/studentlist', (req, res) => {
+    const { token } = req.body;
+    const SQL = `SELECT s.full_name, s.YearGroup
+    FROM students s
+    JOIN majors m ON s.majorID = m.majorID
+    WHERE s.studentID = ?;
+`;
+    
+    db.query(SQL, [token], (err, results) => {
+        if (err) {
+            console.error("Database error:", err);
+            res.send({ error: err });
+        } else {
+            res.send(results);
+        }
+    });
+});
+
+
+app.post('/courselist', (req, res) => {
+    const { token } = req.body;
+
+    const SQL = `
+        SELECT 
+            c.CourseName, 
+            d.departmentName, 
+            d.departmentHead
+        FROM 
+            courses c
+        JOIN 
+            department d ON c.departmentID = d.departmentID
+        JOIN 
+            course_major cm ON c.courseID = cm.courseID
+        JOIN 
+            students s ON s.majorID = cm.majorID
+        WHERE 
+            s.studentID = ?
+    `;
+
+    db.query(SQL, [token], (err, results) => {
+        if (err) {
+            console.error("Database error:", err);
+            res.send({ error: err });
+        } else {
+            console.log(results);
+            res.send(results);
+        }
+    });
+});
+
+

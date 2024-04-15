@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios, { Axios } from 'axios';
 import Modal from 'react-modal';
 import './List.css';
+Modal.setAppElement('#root');
 
 const List = () => {
   const [students, setStudents] = useState([]);
@@ -25,24 +26,23 @@ const List = () => {
 
   const messagecreated = (event) => {
     event.preventDefault();
+    const token = localStorage.getItem('fid');
     
-    axios.post('http://localhost:3002/messages', {
+    axios.post('http://localhost:3002/createmessages', {
       message: newMessage,
-      student: selectedStudent,
+      token: token
     })
      .then((response) => {
         console.log(response);
         setNewMessage('');
         setNewMessageModalIsOpen(false);
+        window.location.reload();
       })
      .catch((error) => {
         console.log(error);
       });
   };
-
-  const handleAlertClick = (fullName) => {
-    alert(`Alert for ${fullName}`);
-  };
+  
 
   const handleViewClick = (student) => {
     setSelectedStudent(student);
@@ -63,7 +63,7 @@ const List = () => {
 
   const handleNewMessageSubmit = async (event) => {
     event.preventDefault();
-    // send the new message to the server here
+    messagecreated(event);
     console.log('New message:', newMessage);
     closeNewMessageModal();
   };

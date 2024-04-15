@@ -14,10 +14,15 @@ import { RiLoginBoxLine } from "react-icons/ri";
 const Login=() => {
 
   const checkLoggedIn = () => {
-    const token = localStorage.getItem('f');
+    const token = localStorage.getItem('fid');
+    const Undertoken = localStorage.getItem('uid');
     if (token) {
       navigateTo('/dashboard');
+    }else if (Undertoken) 
+    {
+      navigateTo('/stuDashboard');
     }
+  
   };
 
   useEffect(() => {
@@ -67,14 +72,18 @@ const Login=() => {
       else {
         if(userType === 'faculty')
         {
-          const fullName = response.data;
-          localStorage.setItem('f', fullName);
+          const fullName = response.data.full_name;
+          localStorage.setItem('fullname', fullName);
+          const FID = response.data.FID;
+          localStorage.setItem('fid', FID);
           navigateTo('/dashboard');
         }
         else if(userType === 'undergrad')
         {
-          const fullName = response.data;
-          localStorage.setItem('f', fullName);
+          const fullName = response.data.full_name;
+          localStorage.setItem('undergradname', fullName);
+          const studentID = response.data.studentID;
+          localStorage.setItem('uid', studentID);
           navigateTo('/stuDashboard');
         }
       }

@@ -13,7 +13,7 @@ import StuDashboard from './Components/studentDashboard/studentDashboard'
 import StuProfile from './Components/studentProfile/studentProfile'
 import Probationlist from './Components/Probationlist/Probationlist'
 import StuCourses from './Components/studentCourses/studentCourses'
-import StuMessages from './Components/studentMessages/Messages'
+import StuMessages from './Components/studentMessages/studentMessages'
 import StuPage   from './Components/studentPage/studentPage'
 
 

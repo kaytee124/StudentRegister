@@ -18,10 +18,6 @@ const List = () => {
         fetchData();
     }, []);
 
-    const handleAlertClick = (fullName) => {
-        alert(`Alert for ${fullName}`);
-    };
-
     return (
         <div className='list-items'>
             <div className='list-header'></div>

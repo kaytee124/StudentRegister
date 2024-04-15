@@ -14,7 +14,7 @@ import { RiLoginBoxLine } from "react-icons/ri";
 const Login=() => {
 
   const checkLoggedIn = () => {
-    const token = localStorage.getItem('sf'); // Change 'token' to your desired key
+    const token = localStorage.getItem('f');
     if (token) {
       navigateTo('/dashboard');
     }
@@ -23,7 +23,7 @@ const Login=() => {
   useEffect(() => {
     checkLoggedIn();
   }, []);
-
+  const [userType, setUserType] = useState('undergrad')
   const [loginEmail, setloginEmail] = useState('')
   const [loginPassword, setloginPassword] = useState('')
   const [errors, setErrors] = useState ({})
@@ -50,6 +50,7 @@ const Login=() => {
     }
 
     Axios.post('http://localhost:3002/login', {
+      userType: userType,
       loginEmail: loginEmail,
       loginPassword: loginPassword,
     }).then((response) => {
@@ -58,15 +59,14 @@ const Login=() => {
       if(response.data.message)
       {
         navigateTo('/')
-        setLoginStatus(response)
+        setLoginStatus(response.data.message);
         setTimeout(() => {
           window.location.reload();
         }, 4000); 
       }
       else {
         const fullName = response.data;
-        localStorage.setItem('sf', fullName); // Store only the full name
-        console.log(localStorage);
+        localStorage.setItem('f', fullName);
         navigateTo('/dashboard');
     }    
     });
@@ -83,7 +83,8 @@ const Login=() => {
     }
   },[loginStatus])
 
-  const onsubmit = () => {
+  const onSubmit = () => {
+    setUserType('undergrad')
     setloginEmail('')
     setloginPassword('')
   }
@@ -102,7 +103,12 @@ const Login=() => {
           
           <div className="footerDiv flex">
             <span className="text">New user?</span>
+            <label className='text'>Student:</label>
             <Link to={'/register'}>
+              <button className='btn'>Register</button>
+            </Link>
+            <label className='text'>Faculty:</label>
+            <Link to={'/facultyregister'}>
               <button className='btn'>Register</button>
             </Link>
           </div>
@@ -113,7 +119,7 @@ const Login=() => {
             <img src={students} alt= "Students sittin in a class" />
           </div>
 
-          <form className='form  grid' onsubmit= {onsubmit}>
+          <form className='form  grid' onSubmit= {onSubmit}>
             <span className= {StatusHolder}>{loginStatus}</span>
             <div className='inputDiv'>
               <label htmlFor="Useremail">Email address:</label>
@@ -135,6 +141,20 @@ const Login=() => {
                     setErrors({ ...errors, loginPassword: '' });
                   }} required />
                   {errors.loginPassword && <span className="error">{errors.loginPassword}</span>}
+              </div>
+            </div>
+            <div className='inputDiv'>
+              <label htmlFor='userType'>User Type:</label>
+              <div className='input flex'>
+                <select
+                  id='userType'
+                  value={userType}
+                  onChange={(event) => setUserType(event.target.value)}
+                >
+                  <option value='undergrad'>Undergraduate</option>
+                  <option value='grad'>Graduate</option>
+                  <option value='faculty'>Faculty</option>
+                </select>
               </div>
             </div>
             <button type='submit' className='btn btn-primary' onClick={Userlogin}>

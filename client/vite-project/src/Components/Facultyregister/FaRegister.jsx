@@ -1,5 +1,5 @@
 import React , {useState}from 'react'
-import './Register.css'
+import './FaRegister.css'
 import '../../App.css'
 import { Link, useNavigate} from 'react-router-dom'
 import Axios from 'axios'
@@ -10,8 +10,8 @@ import students from '../../media/students3.png'
 
 import { MdAssignment } from "react-icons/md";
 
-const Register=() => {
-  const [studentID, setstudentID] = useState('')
+const FaRegister=() => {
+  const [facultyID, setfacultyID] = useState('')
   const [Firstname, setFirstname] = useState('')
   const [Lastname, setLastname] = useState('')
   const [DateOfBirth, setDateOfBirth] = useState('')
@@ -19,11 +19,8 @@ const Register=() => {
   const [Email, setEmail] = useState('')
   const [PhoneNumber, setPhoneNumber] = useState('')
   const [Origin, setOrigin] = useState('')
-  const [YearGroup, setYearGroup] = useState('')
   const [Password, setPassword] = useState('')
   const [VerifyPassword, setVerifyPassword] = useState('')
-  const [Undergrad, setUndergrad] = useState('')
-  const [Major, setMajor] = useState('')
   const [ errors, setErrors] = useState({})
   const navigateTo = useNavigate()
 
@@ -34,8 +31,8 @@ const Register=() => {
 
     const errors = {};
 
-    if (!/^\d{8}$/.test(studentID)) {
-      errors.studentID = "Student ID must be 8 digits long and contain only numbers";
+    if (!/^\d{8}$/.test(facultyID)) {
+      errors.facultyID = "Student ID must be 8 digits long and contain only numbers";
     }
 
 
@@ -69,10 +66,6 @@ const Register=() => {
       errors.Origin = "Country of Origin must contain only letters";
     }
 
-    if (!/^\d{4}$/.test(YearGroup)) {
-      errors.YearGroup = "Year Group must be 4 digits long and contain only numbers";
-    }
-
     if (!/^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).{8,}$/.test(Password)) {
       errors.Password = "Password must contain at least one number, one letter, one symbol, and be at least 8 characters long";
     }
@@ -87,8 +80,8 @@ const Register=() => {
     }
 
 
-    Axios.post('http://localhost:3002/register', {
-      studentID: studentID,
+    Axios.post('http://localhost:3002/faregister', {
+      facultyID: facultyID,
       Firstname: Firstname,
       Lastname: Lastname,
       DateOfBirth: DateOfBirth,
@@ -96,14 +89,11 @@ const Register=() => {
       Email: Email,
       PhoneNumber: PhoneNumber,
       Origin: Origin,
-      YearGroup: YearGroup,
-      Password: Password,
-      Undergrad: Undergrad,
-      Major: Major
+      Password: Password
     }).then(() => {
       navigateTo('/');
 
-      setstudentID('')
+      setfacultyID('')
       setFirstname('')
       setLastname('')
       setDateOfBirth('')
@@ -111,41 +101,10 @@ const Register=() => {
       setEmail('')
       setPhoneNumber('')
       setOrigin('')
-      setYearGroup('')
       setPassword ('')
       setVerifyPassword ('')
-      setUndergrad('')
-      setMajor('')
     });
   }
-
-  const renderMajorOptions = () => {
-    if (Undergrad === '1') {
-      return (
-        <>
-          <option value="1">Business Administration</option>
-          <option value="2">Civil Engineering</option>
-          <option value="3">Mechanical Engineering</option>
-          <option value="4">Electrical and Electronics Engineering</option>
-          <option value="5">Mechatronics</option>
-          <option value="6">Computer Science</option>
-          <option value="7">Management Information Systems</option>
-        </>
-      );
-    } else {
-      return (
-        <>
-          <option value="8">Computer Science</option>
-          <option value="9">Management Information Systems</option>
-          <option value="10">Civil Engineering</option>
-        </>
-      );
-    }
-  };
-
-
-
-
   return (
     <div className='RegisterPage flex'>
       <div className="container flex">
@@ -171,13 +130,13 @@ const Register=() => {
 
             <form action="" className='form grid'>
               <div className='inputDiv'>
-                <label htmlFor="studentID">Student ID:</label>
+                <label htmlFor="FacultyID">Faculty ID:</label>
                 <div className="input flex">
-                  <input type="text" id='studentID' placeholder='Enter your student ID' onChange={(event) => {
-                    setstudentID(event.target.value);
-                    setErrors({ ...errors, studentID: '' });
+                  <input type="text" id='facultyID' placeholder='Enter your faculty ID' onChange={(event) => {
+                    setfacultyID(event.target.value);
+                    setErrors({ ...errors, facultyID: '' });
                   }} required />
-                  {errors.studentID && <span className="error">{errors.studentID}</span>}
+                  {errors.facultyID && <span className="error">{errors.facultyID}</span>}
                 </div>
               </div>
 
@@ -224,7 +183,6 @@ const Register=() => {
                   {errors.DateOfBirth && <span className="error">{errors.DateOfBirth}</span>}
                 </div>
               </div>
-
               <div className='inputDiv'>
                 <label htmlFor="Email">Email address:</label>
                 <div className="input flex">
@@ -255,43 +213,6 @@ const Register=() => {
                     setErrors({ ...errors, Origin: '' });
                   }} required />
                   {errors.Origin && <span className="error">{errors.Origin}</span>}
-                </div>
-              </div>
-
-              <div className='inputDiv'>
-                <label htmlFor="YearGroup">Year Group:</label>
-                <div className="input flex">
-                  <input type="text" id='YearGroup' placeholder='Enter year group' onChange={(event) => {
-                    setYearGroup(event.target.value);
-                    setErrors({ ...errors, YearGroup: '' });
-                  }} required />
-                  {errors.YearGroup && <span className="error">{errors.YearGroup}</span>}
-                </div>
-              </div>
-              <div className='inputDiv'>
-                <label>Are you Under-Graduate:</label>
-                <div className="input flex">
-                  <label htmlFor="yes">Yes</label>
-                  <input type="radio" id="yes" name="undergrad" value="1" onChange={(event)=>{
-                    setUndergrad(event.target.value)}} required />
-                  <label htmlFor="no">No</label>
-                  <input type="radio" id="no" name="undergrad" value="2"  onChange={(event)=>{
-                    setUndergrad(event.target.value)}} required />
-                </div>
-              </div>
-              <div className="inputDiv">
-                <label htmlFor="Major">Major:</label>
-                <div className="input flex">
-                  <select
-                    id="Major"
-                    onChange={(event) => {
-                      setMajor(event.target.value);
-                    }}
-                    required
-                  >
-                    <option value="">Select Major</option>
-                    {renderMajorOptions()}
-                  </select>
                 </div>
               </div>
               <div className='inputDiv'>
@@ -329,4 +250,4 @@ const Register=() => {
 
 }
 
-export default Register
+export default FaRegister

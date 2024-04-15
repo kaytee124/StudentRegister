@@ -4,6 +4,7 @@ import Login from './Components/Login/login'
 import Register from './Components/Register/Register'
 import Deanlist from './Components/Deanlist/Deanlist'
 import Messages from './Components/Messages/Messages'
+import FaRegister from './Components/Facultyregister/FaRegister'
 
 import {
   createBrowserRouter,
@@ -35,6 +36,10 @@ const router = createBrowserRouter ([
   {
     path: '/messages',
     element: <div><Messages/></div>
+  },
+  {
+    path: '/facultyregister',
+    element: <div><FaRegister/></div>
   },
 
 

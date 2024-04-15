@@ -65,10 +65,19 @@ const Login=() => {
         }, 4000); 
       }
       else {
-        const fullName = response.data;
-        localStorage.setItem('f', fullName);
-        navigateTo('/dashboard');
-    }    
+        if(userType === 'faculty')
+        {
+          const fullName = response.data;
+          localStorage.setItem('f', fullName);
+          navigateTo('/dashboard');
+        }
+        else if(userType === 'undergrad')
+        {
+          const fullName = response.data;
+          localStorage.setItem('f', fullName);
+          navigateTo('/stuDashboard');
+        }
+      }
     });
 
 

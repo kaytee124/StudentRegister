@@ -1,4 +1,4 @@
-import React from 'react'
+import React , {useState}from 'react'
 import { BiSearchAlt } from "react-icons/bi";
 import { IoNotifications } from "react-icons/io5";
 
@@ -16,7 +16,7 @@ const Header =() => {
 
     </div>
     <div className='header'>
-        <h1 className='title'>Dashboard</h1>
+        <h1 className='title'>Profile</h1>
         <div className='activity'>
           <div className='searchBox'>
             <input type="text" placeholder="Search" />

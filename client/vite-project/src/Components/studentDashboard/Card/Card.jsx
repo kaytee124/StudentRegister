@@ -6,14 +6,14 @@ import { Link, useNavigate} from 'react-router-dom'
 
 const cardvals= [
     {
-        title:"Dean's list",
-        icon:<FaMedal/>,
-        link : '/deanlist'
+        title:"Profile",
+        icon:<FaRegUser />,
+        link : '/stuProfile'
     },
     {
-        title:"Probation List",
-        icon:<FaClipboardList />,
-        link : '/probationlist'
+        title:"Courses",
+        icon:<SiCoursera/>,
+        link : '/stuCourses'
     },
 
 ];

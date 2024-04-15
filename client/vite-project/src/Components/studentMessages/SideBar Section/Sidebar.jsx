@@ -1,9 +1,8 @@
 import React from 'react'
 import './sidebar.css'
-import { FaUniversity, FaUser} from "react-icons/fa";
+import { FaUniversity, FaMedal } from "react-icons/fa";
 import { BiHome, BiMessage, BiHelpCircle} from "react-icons/bi";
-import { SiCoursera } from "react-icons/si";
-import { IoMdPeople } from "react-icons/io";
+import { VscCircleSlash } from "react-icons/vsc";
 
 const Sidebar =() => {
 
@@ -15,33 +14,27 @@ const Sidebar =() => {
         </div>
 
         <div className='menu--list'>
-            <a href = "/stuDashboard" className='item active'>
+            <a href = "/dashboard" className='item active'>
             <BiHome className='icon' />
             Dashboard
             </a>
         </div>
         <div className='menu--list'>
-            <a href = "stuProfile" className='item'>
-            <FaUser className='icon'/>
-            Profile
+            <a href = "/deanlist" className='item'>
+            <FaMedal className='icon'/>
+            Deans List
             </a>
         </div>
         <div className='menu--list'>
-            <a href = "stuCourses" className='item'>
-            <SiCoursera className='icon'/>
-            Courses
+            <a href = "/probationlist" className='item'>
+            <VscCircleSlash  className='icon'/>
+            Probation List
             </a>
         </div>
         <div className='menu--list'>
-            <a href = "stumessages" className='item'>
+            <a href = "/messages" className='item'>
             <BiMessage  className='icon'/>
             Messages
-            </a>
-        </div>
-        <div className='menu--list'>
-            <a href = "stupage" className='item'>
-            <IoMdPeople className='icon' />
-            Students
             </a>
         </div>
         <div className='menu--list'>

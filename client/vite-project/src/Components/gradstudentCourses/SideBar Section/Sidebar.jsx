@@ -11,7 +11,7 @@ const Sidebar = () => {
   const navigateTo = useNavigate();
 
   const logout = () => {
-    localStorage.removeItem('gradfullname');
+    localStorage.removeItem('gradname');
     localStorage.removeItem('Gid');
     navigateTo('/');
   };
@@ -30,25 +30,25 @@ const Sidebar = () => {
             </a>
         </div>
         <div className='menu--list'>
-            <a href = "/stuProfile" className='item'>
+            <a href = "/gradprofile" className='item'>
             <FaUser className='icon'/>
             Profile
             </a>
         </div>
         <div className='menu--list'>
-            <a href = "/stuCourses" className='item'>
+            <a href = "/gradcourse" className='item'>
             <SiCoursera className='icon'/>
             Courses
             </a>
         </div>
         <div className='menu--list'>
-            <a href = "stumessages" className='item'>
+            <a href = "/gradmessage" className='item'>
             <BiMessage  className='icon'/>
             Messages
             </a>
         </div>
         <div className='menu--list'>
-            <a href = "/stupage" className='item'>
+            <a href = "/gradpage" className='item'>
             <IoMdPeople className='icon' />
             Students
             </a>

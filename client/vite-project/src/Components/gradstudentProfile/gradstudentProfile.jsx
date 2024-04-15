@@ -1,9 +1,9 @@
 import React , {useState}from 'react'
-import './studentProfile.css'
+import './gradstudentProfile.css'
 import Sidebar from './SideBar Section/Sidebar'
 import Content from './Content/Content'
 
-const studentProfile =() => {
+const gradstudentProfile =() => {
   return (
     <div className='dashboard'>
       <Sidebar/>
@@ -15,4 +15,4 @@ const studentProfile =() => {
   )
 }
 
-export default studentProfile
+export default gradstudentProfile

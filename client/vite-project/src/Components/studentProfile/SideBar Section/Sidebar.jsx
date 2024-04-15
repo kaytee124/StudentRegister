@@ -42,7 +42,7 @@ const Sidebar = () => {
             </a>
         </div>
         <div className='menu--list'>
-            <a href = "stumessages" className='item'>
+            <a href = "/stumessages" className='item'>
             <BiMessage  className='icon'/>
             Messages
             </a>

@@ -5,14 +5,14 @@ import './List.css';
 const List = () => {
     const [studentprofile, setStudentprofile] = useState([]);
     const userID = () => {
-        return localStorage.getItem('uid');
+        return localStorage.getItem('Gid');
         };
     const token = userID();
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.post('http://localhost:3002/studentprofile', { token });
+                const response = await axios.post('http://localhost:3002/gradprofile', { token });
                 setStudentprofile(response.data);
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -26,7 +26,6 @@ const List = () => {
     return (
         <div className='list-items'>
             <div className='list-header'>
-                <h2>Probation</h2>
             </div>
             <table width='100%'>
                 <tbody>

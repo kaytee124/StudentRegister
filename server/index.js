@@ -19,7 +19,7 @@ const db = mysql.createConnection({
 });
 
 app.post('/register', async (req, res) => {
-    const { studentID, Firstname, Lastname, DateOfBirth, Gender, Email, PhoneNumber, Origin, YearGroup, Undergrad, Password, Major } = req.body;
+    const { studentID, Firstname, Lastname, DateOfBirth, Gender, Email, PhoneNumber, Origin, YearGroup, GPA, Undergrad, Password, Major } = req.body;
 
     const hashedPassword = await bcrypt.hash(Password, 10);
     let fullName = `${Firstname} ${Lastname}`;
@@ -28,12 +28,12 @@ app.post('/register', async (req, res) => {
     let values;
 
     if (Undergrad === '1') {
-        SQL = 'INSERT INTO students (studentID, FirstName, LastName, DateOfBirth, Gender, Email, PhoneNumber, CountryOfOrigin, YearGroup, Gid, pswd, full_name, majorID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)';
-        values = [studentID, Firstname, Lastname, DateOfBirth, Gender, Email, PhoneNumber, Origin, YearGroup, Undergrad, hashedPassword, fullName, Major];
+        SQL = 'INSERT INTO students (studentID, FirstName, LastName, DateOfBirth, Gender, Email, PhoneNumber, CountryOfOrigin, YearGroup, GPA, Gid, pswd, full_name, majorID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)';
+        values = [studentID, Firstname, Lastname, DateOfBirth, Gender, Email, PhoneNumber, Origin, YearGroup, GPA, Undergrad, hashedPassword, fullName, Major];
     } else if (Undergrad === '2') {
-        // Assuming a different database connection for non-undergraduates
-        SQL = 'INSERT INTO gradstudents (gradstudentID, FirstName, LastName, DateOfBirth, Gender, Email, PhoneNumber, CountryOfOrigin, YearGroup, Gid, pswd, full_name, gradmajorID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)';
-        values = [studentID, Firstname, Lastname, DateOfBirth, Gender, Email, PhoneNumber, Origin, YearGroup, Undergrad, hashedPassword,fullName, Major];
+
+        SQL = 'INSERT INTO gradstudents (gradstudentID, FirstName, LastName, DateOfBirth, Gender, Email, PhoneNumber, CountryOfOrigin, YearGroup,GPA, Gid, pswd, full_name, gradmajorID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)';
+        values = [studentID, Firstname, Lastname, DateOfBirth, Gender, Email, PhoneNumber, Origin, YearGroup, GPA, Undergrad, hashedPassword,fullName, Major];
     } else {
         return res.status(400).send({ error: 'Invalid value for Undergrad' });
     }
@@ -223,6 +223,24 @@ app.post('/studentlist', (req, res) => {
     });
 });
 
+app.post('/gradstudentlist', (req, res) => {
+    const { token } = req.body;
+    const SQL = `SELECT g.full_name, g.YearGroup
+    FROM gradstudents g
+    JOIN gradmajors gm ON g.gradmajorID = gm.gradmajorID
+    WHERE g.gradstudentID = ?;
+`;
+    
+    db.query(SQL, [token], (err, results) => {
+        if (err) {
+            console.error("Database error:", err);
+            res.send({ error: err });
+        } else {
+            res.send(results);
+        }
+    });
+});
+
 
 app.post('/courselist', (req, res) => {
     const { token } = req.body;
@@ -249,7 +267,6 @@ app.post('/courselist', (req, res) => {
             console.error("Database error:", err);
             res.send({ error: err });
         } else {
-            console.log(results);
             res.send(results);
         }
     });
@@ -280,9 +297,21 @@ app.post('/gradcourselist', (req, res) => {
             console.error("Database error:", err);
             res.send({ error: err });
         } else {
-            console.log(results);
             res.send(results);
         }
     });
 });
 
+app.post('/gradprofile', (req, res) => {
+    const { token } = req.body;
+    const SQL = 'SELECT full_name, YearGroup, DateOfBirth, Gender, Email, PhoneNumber, CountryOfOrigin FROM gradstudents WHERE gradstudentID = ?';
+    
+    db.query(SQL, [token], (err, results) => {
+        if (err) {
+            console.error("Database error:", err);
+            res.send({ error: err });
+        } else {
+            res.send(results);
+        }
+    });
+});

@@ -18,6 +18,8 @@ import StuPage   from './Components/studentPage/studentPage'
 import Gradcourses from './Components/gradstudentCourses/gradstudentCourses'
 import Graddashboard from './Components/gradstudentDashboard/gradstudentDashboard'
 import Gradmessage from './Components/gradstudentMessages/gradstudentMessages'
+import GradPage from './Components/gradstudentPage/gradstudentPage'
+import GradProfile from './Components/gradstudentProfile/gradstudentProfile'
 
 
 
@@ -83,8 +85,14 @@ const router = createBrowserRouter ([
     path: '/gradmessage',
     element: <div><Gradmessage/></div>
   },
-
-
+  {
+    path: '/gradpage',
+    element: <div><GradPage/></div>
+  },
+  {
+    path: '/gradprofile',
+    element: <div><GradProfile/></div>
+  },
 ])
 
 

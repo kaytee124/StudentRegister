@@ -1,5 +1,6 @@
 import React , {useState}from 'react'
-import { FaMedal,FaClipboardList } from "react-icons/fa";
+import { FaRegUser } from "react-icons/fa";
+import { SiCoursera } from "react-icons/si";
 import { Link, useNavigate} from 'react-router-dom'
 
 

@@ -3,7 +3,7 @@ import './studentCourses.css'
 import Sidebar from './SideBar Section/Sidebar'
 import Content from './Content/Content'
 
-const studentDashboard =() => {
+const studentCourses =() => {
   return (
     <div className='/dashboard'>
       <Sidebar/>
@@ -15,4 +15,4 @@ const studentDashboard =() => {
   )
 }
 
-export default studentDashboard
+export default studentCourses

@@ -5,7 +5,7 @@ import Content from './Content/Content'
 
 const studentDashboard =() => {
   return (
-    <div className='studentdashboard'>
+    <div className='dashboard'>
       <Sidebar/>
       <div className='dashboard--content'>
         <Content/>

@@ -7,7 +7,7 @@ const Header =() => {
 
 
   const userName = () => {
-    return localStorage.getItem('Gid');
+    return localStorage.getItem('uid');
     };
 
   return (

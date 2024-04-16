@@ -7,7 +7,7 @@ const Header =() => {
 
 
   const userName = () => {
-    return localStorage.getItem('gradname');
+    return localStorage.getItem('s');
     };
 
   return (

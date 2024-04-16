@@ -24,7 +24,6 @@ const Register=() => {
   const [VerifyPassword, setVerifyPassword] = useState('')
   const [Undergrad, setUndergrad] = useState('')
   const [Major, setMajor] = useState('')
-  const [GPA, setGPA] = useState('')
   const [ errors, setErrors] = useState({})
   const navigateTo = useNavigate()
 
@@ -82,10 +81,6 @@ const Register=() => {
       errors.VerifyPassword = "Passwords do not match";
     }
 
-    if (!/^\d{1,3}(?:\.\d{1,2})?$/.test(GPA) || parseFloat(GPA) > 4.00) {
-      errors.GPA = "GPA must be a number with up to two decimal places, not exceeding 4.00";
-    }
-    
     if (Object.keys(errors).length > 0) {
       setErrors(errors);
       return;
@@ -104,8 +99,7 @@ const Register=() => {
       YearGroup: YearGroup,
       Password: Password,
       Undergrad: Undergrad,
-      Major: Major,
-      GPA: GPA
+      Major: Major
     }).then(() => {
       navigateTo('/');
 
@@ -122,7 +116,6 @@ const Register=() => {
       setVerifyPassword ('')
       setUndergrad('')
       setMajor('')
-      setGPA('')
     });
   }
 
@@ -299,16 +292,6 @@ const Register=() => {
                     <option value="">Select Major</option>
                     {renderMajorOptions()}
                   </select>
-                </div>
-              </div>
-              <div className='inputDiv'>
-                <label htmlFor="GPA">GPA</label>
-                <div className="input flex">
-                  <input type="text" id='GPA' placeholder='Enter your GPA' onChange={(event) => {
-                    setGPA(event.target.value);
-                    setErrors({ ...errors, GPA: '' });
-                  }} required />
-                  {errors.GPA && <span className="error">{errors.GPA}</span>}
                 </div>
               </div>
               <div className='inputDiv'>

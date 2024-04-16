@@ -26,7 +26,6 @@ const List = () => {
     return (
         <div className='list-items'>
             <div className='list-header'>
-                <h2>Probation</h2>
             </div>
             <table width='100%'>
                 <tbody>
